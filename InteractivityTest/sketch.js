@@ -6,7 +6,7 @@ function preload(){
 }
 
 function setup() {
-    createCanvas(600, 400,WEBGL);
+    createCanvas(windowWidth, windowHeight-5,WEBGL);
   }
   
 function draw() {
@@ -22,5 +22,5 @@ function draw() {
 }
 
 function windowResized(){
-    resizeCanvas(windowWidth, windowHeight);
+    resizeCanvas(windowWidth, windowHeight-5);
 }
