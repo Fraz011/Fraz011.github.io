@@ -13,6 +13,7 @@ function draw() {
     background(0);
     // send resolution of sketch into shader
     Shader.setUniform('u_resolution', [width, height]);
+    Shader.setUniform('u_mousePosition', [mouseX, height-mouseY]);
     Shader.setUniform("u_time", millis() / 1000.0);
     fill(255,0,0);
     // shader() sets the active shader with our shader
