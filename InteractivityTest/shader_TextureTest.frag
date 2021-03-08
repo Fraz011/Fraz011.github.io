@@ -7,6 +7,7 @@ precision mediump float;
 uniform vec2 resolution;
 uniform vec2 resolutionOld;
 uniform float u_time;
+uniform float d;
 uniform vec2 mouse;
 
 vec2 concentricCircles(in vec2 st, in vec2 radius) {
@@ -16,8 +17,7 @@ vec2 concentricCircles(in vec2 st, in vec2 radius) {
 
 void main (void) {
     vec2 st = gl_FragCoord.xy/resolution.xy;
-    st = fract(st*1.0);
+    st = fract(st-mouse);
   
-    gl_FragColor = vec4(st.x,st.y,0.0,1.0);
-    //gl_FragColor = vec4(st.x,st.y,0.0,.0)
+    gl_FragColor = vec4(st.x,st.y,d,1.0);
 }
