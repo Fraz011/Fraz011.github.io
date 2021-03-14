@@ -80,8 +80,8 @@ class slider{
     this.x = x;
     this.y = y;
     this.width = width-height-50;
-    this.height = 10.0;
-    this.radius = 30.0;
+    this.height = 8.0;
+    this.radius = 25.0;
     this.scalar = initValue;
     this.name = name;
     this.fill = color(218,165,32);
@@ -89,7 +89,7 @@ class slider{
 
   drawSlider(){
     fill(this.fill);
-    textSize(32);
+    textSize(height/25);
     textFont(font);
     text(this.name, this.x, this.y+32);
     rect(this.x,this.y+50,this.width,this.height);
