@@ -3,17 +3,22 @@ let shaderTexture;
 
 let theta = 0;
 
+let noise;
+
 let x;
 let y;
 let outsideRadius = 200;
 let insideRadius = 100;
 
+let shader = 'shader_textureSearch.frag';
+
 let sliders = [];
 
 function preload(){
-  theShader = loadShader('shader_TextureTest.vert','shader_TextureTest.frag');
+  theShader = loadShader('shader.vert',shader);
+  noise = loadImage('Noise.png');
   font = loadFont('Verdana.ttf');
-  shaderStrings = loadStrings('shader_TextureTest.frag');
+  shaderStrings = loadStrings(shader);
 }
 
 function setup() {
@@ -44,6 +49,7 @@ function draw() {
   // here we're using setUniform() to send our uniform values to the shader
   theShader.setUniform("resolution", [width, height]);
   theShader.setUniform("u_time", millis() / 1000.0);
+  theShader.setUniform("tex0",noise);
 
   // passing the shaderTexture layer geometry to render on
   shaderTexture.rect(0,0,width,height);
@@ -94,7 +100,7 @@ class slider{
   updateParm(){
     if(
     dist(mouseX,mouseY,this.x+(this.scalar*this.width),this.y+this.height/2.0+50) <= this.radius/2 
-    || (mouseX > this.x && mouseX < this.x + this.width && mouseY > this.y + 50 && mouseY < this.y + 50 + this.height)
+    || (mouseX > this.x && mouseX < this.x + this.width && mouseY > this.y + 50-this.height*2 && mouseY < this.y + 50 + this.height*4)
     ){
       this.scalar = constrain((mouseX-this.x)/this.width,0.0,1.0);
     }
